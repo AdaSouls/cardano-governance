@@ -1,0 +1,82 @@
+{
+  "@context": {
+    "CIP100": "https://github.com/cardano-foundation/CIPs/blob/master/CIP-0100/README.md#",
+    "CIP119": "https://github.com/cardano-foundation/CIPs/blob/master/CIP-0119/README.md#",
+    "hashAlgorithm": "CIP100:hashAlgorithm",
+    "body": {
+      "@id": "CIP119:body",
+      "@context": {
+        "references": {
+          "@id": "CIP119:references",
+          "@container": "@set",
+          "@context": {
+            "GovernanceMetadata": "CIP100:GovernanceMetadataReference",
+            "Other": "CIP100:OtherReference",
+            "label": "CIP100:reference-label",
+            "uri": "CIP100:reference-uri"
+          }
+        },
+        "paymentAddress": "CIP119:paymentAddress",
+        "givenName": "CIP119:givenName",
+        "image": {
+          "@id": "CIP119:image",
+          "@context": {
+            "ImageObject": "https://schema.org/ImageObject"
+          }
+        },
+        "objectives": "CIP119:objectives",
+        "motivations": "CIP119:motivations",
+        "qualifications": "CIP119:qualifications"
+      }
+    }
+  },
+  "hashAlgorithm": "blake2b-256",
+  "body": {
+    "givenName": "AdaSouls",
+    "image": {
+      "@type": "ImageObject",
+      "contentUrl": "https://raw.githubusercontent.com/AdaSouls/cardano-stake-pool/main/logo.png",
+      "sha256": "70b80bf6bb1e40b67261ef9e31d48c5c3e1f60d8e9ed40b58acab1cc4fef586a"
+    },
+    "objectives": "Vote on every governance action, each vote with a published rationale. AI reads each action against the Cardano Constitution, its budget and the proposer's track record; a named human, Matías Falcone, decides and signs every vote. When an action involves AdaSouls, its partners or its competitors, we vote Abstain and explain why.",
+    "motivations": "AdaSouls builds identity, spending limits and verifiable reputation for AI agents, and has run a Cardano stake pool since 2020. Agents will take part in Cardano's economy and governance. We want to show, in the open, how they can help people govern without replacing human judgment.",
+    "qualifications": "Cardano stake pool operator since 2020 (SOULS, formerly FALCO, 340+ blocks). Builders of ALMA, an open protocol for agent identity and verifiable evidence, and of Velum, privacy-preserving credentials live on Midnight mainnet. Catalyst-funded team.",
+    "references": [
+      {
+        "@type": "Link",
+        "label": "Website",
+        "uri": "https://adasouls.io"
+      },
+      {
+        "@type": "Link",
+        "label": "X",
+        "uri": "https://x.com/AdaSouls"
+      },
+      {
+        "@type": "Link",
+        "label": "GitHub",
+        "uri": "https://github.com/AdaSouls"
+      },
+      {
+        "@type": "Link",
+        "label": "SOULS stake pool",
+        "uri": "https://cardanoscan.io/pool/pool12r08n33avu33ncstukwxyr440mgaazmuclay38v0yt34xytu2dq"
+      },
+      {
+        "@type": "Link",
+        "label": "Conflict of interest policy",
+        "uri": "https://github.com/AdaSouls/adasouls-governance/blob/main/policies/conflict-of-interest.md"
+      },
+      {
+        "@type": "Link",
+        "label": "How we use AI",
+        "uri": "https://github.com/AdaSouls/adasouls-governance/blob/main/policies/ai-use.md"
+      },
+      {
+        "@type": "Link",
+        "label": "Votes and rationales",
+        "uri": "https://github.com/AdaSouls/adasouls-governance/blob/main/votes/README.md"
+      }
+    ]
+  }
+}
