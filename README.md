@@ -1,4 +1,4 @@
-# AdaSouls governance
+# AdaSouls Cardano Governance
 
 How AdaSouls takes part in Cardano governance, in the open.
 
