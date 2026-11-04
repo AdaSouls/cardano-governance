@@ -2,13 +2,27 @@
 
 One vote per transaction (the Ledger accepts a single voter with a single voting procedure). Same machines and files as `G0-register-drep.md`.
 
+> Scripted in `scripts/drep-vote/` (G2.1). The commands below are what the scripts run; the scripts add the checks: the rationale hashes to what `decision.json` recorded, the anchor URL points at a commit sha (never `main`), and the transaction body holds exactly one vote and nothing else.
+>
+> ```bash
+> # online: votes/<key>/{decision.json,rationale.jsonld} committed and pushed; <sha> = that commit
+> scripts/drep-vote/01-online-build.sh <tx id>-<index> <sha> <TXHASH#IX from fees.addr>
+> # offline, Ledger connected
+> scripts/drep-vote/02-offline-sign.sh vote.raw drep.hwsfile /path/to/fees.skey
+> # online
+> scripts/drep-vote/03-online-submit.sh vote.signed <tx id>-<index>
+> ```
+>
+> `decision.json` and `rationale.jsonld` are written by the governance analyst (`reference-agents/governance-analyst`: `gov review`, `gov publish`); `gov anchor <key> --commit <sha> --check` prints the same URL and hash the script verifies.
+
 ## 1. Online: publish the rationale, build the vote
 
-The rationale is a CIP-100 JSON-LD file, `votes/<action-id>/rationale.jsonld`, made from `drep/vote-rationale.template.jsonld`. Publish it first: `transaction build` downloads it and checks its hash.
+The rationale is a CIP-100 JSON-LD file, `votes/<action-id>/rationale.jsonld`, made from `drep/vote-rationale.template.jsonld`. Publish it first: `transaction build` downloads it and checks its hash. Anchor the file **at a commit sha**, not at `main`: the hash is of the bytes, and a branch URL can change.
 
 ```bash
 ACTION_TX=<governance action tx id>; ACTION_IX=<index>
-URL=https://raw.githubusercontent.com/AdaSouls/adasouls-governance/main/votes/$ACTION_TX-$ACTION_IX/rationale.jsonld
+SHA=<commit sha that holds the rationale>
+URL=https://raw.githubusercontent.com/AdaSouls/cardano-governance/$SHA/votes/$ACTION_TX-$ACTION_IX/rationale.jsonld
 HASH=$(cardano-cli hash anchor-data --file-text votes/$ACTION_TX-$ACTION_IX/rationale.jsonld)
 cardano-cli hash anchor-data --url "$URL" --expected-hash "$HASH"
 cardano-cli conway governance vote create --yes \
